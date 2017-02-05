@@ -12,11 +12,28 @@ class product:
             csvreader = csv.reader(csvfile, delimiter=',', quotechar='"')
             for row in csvreader:
                 if c == 0:
-                    columns += ','.join(row)+')VALUES'
+                    #columns += ','.join(row)+')VALUES'
                     #for i in row: values += "'%s',"
                     #values = values[0:-1] + ')'
-                #print("values" % ','.join(row))
+                    c +=1
+                    continue
+
+                self.register_product([],row)
                 c += 1
 
-        print(columns)
-        print(values)
+
+    def register_product(self,conn=[],data=[]):
+        sql = '''INSERT INTO dtb_product(
+name,
+note,
+description_list,
+description_detail,
+search_word,
+free_area,
+del_flg,
+create_date,
+update_date
+)VALUES
+({0[0]},{0[1]},{0[2]},{0[3]},{0[4]},{0[5]},{0[6]},{0[7]},{0[8]})
+'''
+        print(sql.format(data))
