@@ -3,10 +3,19 @@ import os.path
 import re
 import logging
 import yaml
+import pymysql
+from django.conf import settings
 
 class utils:
     def sample(self):
         print("utils.sample()")
+
+    def get_conn(self):
+        dbconf = settings.DATABASES['default']
+        return pymysql.connect(host=dbconf['HOST'], port=3306, user=dbconf['USER'], passwd=dbconf['PASSWORD'], db=dbconf['NAME'])
+
+    # def close_db(self,conn=[]):
+    #     conn.close()
 
     def log_info(self,msg,data):
         logging.basicConfig(filename='example.log',level=logging.DEBUG)
@@ -41,6 +50,3 @@ class utils:
         for key in data:
             if(re.match('^Eccube', key)):
                 return data[key]['fields']
-
-
-

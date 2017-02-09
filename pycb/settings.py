@@ -96,7 +96,7 @@ DATABASES = {
         'HOST': 'localhost',
         'USER': 'pycube',
         'PASSWORD': 'pycube',
-#        'PORT': '3306',
+       'PORT': '3306',
 #        'OPTIONS': {'options': '-c search_path=django,public'},
     }
 }

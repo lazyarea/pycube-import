@@ -29,10 +29,10 @@ class Command(BaseCommand):
         product().load_csv(fpath)
 
         # read yml
-        ypath = \
-        '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Product.dcm.yml'
-        yml = utils().read_yaml(ypath)
-        entities = utils().read_entity(yml)
+        # ypath = \
+        # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Product.dcm.yml'
+        # yml = utils().read_yaml(ypath)
+        # entities = utils().read_entity(yml)
 
 
         # end
