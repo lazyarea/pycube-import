@@ -12,7 +12,13 @@ class utils:
 
     def get_conn(self):
         dbconf = settings.DATABASES['default']
-        return pymysql.connect(host=dbconf['HOST'], port=3306, user=dbconf['USER'], passwd=dbconf['PASSWORD'], db=dbconf['NAME'])
+        return pymysql.connect(host=dbconf['HOST'], 
+		port=3306,
+		user=dbconf['USER'],
+		passwd=dbconf['PASSWORD'],
+		db=dbconf['NAME'],
+		charset='utf8',
+		cursorclass=pymysql.cursors.DictCursor)
 
     # def close_db(self,conn=[]):
     #     conn.close()

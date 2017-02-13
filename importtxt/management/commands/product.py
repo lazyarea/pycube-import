@@ -33,6 +33,7 @@ class Command(BaseCommand):
         # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Product.dcm.yml'
         # yml = utils().read_yaml(ypath)
         # entities = utils().read_entity(yml)
+        # print(entities.keys())
 
 
         # end

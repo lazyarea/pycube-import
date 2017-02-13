@@ -20,3 +20,4 @@ tox==2.5.0
 unicode-string-literal==1.1
 virtualenv==15.1.0
 Werkzeug==0.11.15
+PyYAML==3.12
