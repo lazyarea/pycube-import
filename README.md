@@ -18,7 +18,7 @@ python(3.6.0)
     bash Anaconda3-4.3.0-Linux-x86_64.sh
     ...
     cd ~/anaconda3/env/
-    conda create -name project_name python=3.6
+    conda create -n project_name python=3.6
     cd project_name
     source activate project_name
     (project_name) $
