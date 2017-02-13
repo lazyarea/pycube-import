@@ -10,8 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        data_dir = "/tmp"
-        filter   = 'FCH_Product'
+        data_dir = settings.BASE_DIR + '/doc/'
+        filter   = 'product.csv'
         if utils().exists_dir(data_dir) == False:
             print(data_dir + ' is not directory.')
             sys.exit()
@@ -24,17 +24,16 @@ class Command(BaseCommand):
             utils().log_info('%s %s' % (file,'is found.'),[])
 
         fpath = data_dir + '/' + file
-
         # read csv
         product().load_csv(fpath)
 
         # read yml
         # ypath = \
+        # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.ProductClass.dcm.yml'
         # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Product.dcm.yml'
         # yml = utils().read_yaml(ypath)
         # entities = utils().read_entity(yml)
         # print(entities.keys())
-
 
         # end
         utils().log_info('end',[])

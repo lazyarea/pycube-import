@@ -27,10 +27,9 @@ class product:
                 c += 1
                 if ( c == FULLLINES & len(rows) > 0):
                     self.register_product(conn,rows)
-
         conn.close()
 
-    def register_product(self,conn=[],rows=[],utils=[]):
+    def register_product(self,conn=[],rows=[]):
         if( len(rows) == 0): return
         sql = '''INSERT INTO dtb_product(
 creator_id,
@@ -61,3 +60,24 @@ update_date
         finally:
             # print('finally')
             pass
+
+    def register_product_class(self,conn=[],rows=[]):
+
+        sql = '''
+INSERT INTO dtb_product_class(
+product_id,
+product_type_id,
+creator_id,
+product_code,
+stock,
+stock_unlimited,
+sale_limit,
+price01,
+price02,
+delivery_fee,
+create_date,
+update_date,
+del_flg
+)
+VALUES
+'''
