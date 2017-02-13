@@ -4,7 +4,7 @@ python(3.6.0)
 
 ## pyenv
     $ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-    $ cat << EOF > ~/.bash_profile
+    $ cat << EOF >> ~/.bash_profile
     export PYENV_ROOT="\$HOME/.pyenv"
     export PATH="\$PYENV_ROOT/bin:\$PATH"
     eval "\$(pyenv init -)"
