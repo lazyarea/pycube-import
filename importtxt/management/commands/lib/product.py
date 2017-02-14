@@ -71,6 +71,7 @@ update_date
         # print(sql)
 
     def register_product_class(self,conn=[],rows=[]):
+        if( len(rows) == 0): return
         sql = '''
 INSERT INTO dtb_product_class(
 product_id,
@@ -104,6 +105,7 @@ VALUES
         #     pass
 
     def register_product_image(self,conn=[],rows=[]):
+        if( len(rows) == 0): return
         sql = '''
 INSERT INTO dtb_product_image(
 product_id,
@@ -125,6 +127,7 @@ VALUES
         #     print('Got error')
 
     def register_product_stock(self,conn=[],rows=[]):
+        if( len(rows) == 0): return
         sql = '''
 INSERT INTO dtb_product_stock(
 product_class_id,
