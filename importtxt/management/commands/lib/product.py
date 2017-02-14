@@ -23,10 +23,17 @@ class product:
                 rows.append(row)
                 if (c % NUMROWS == 0):
                     self.register_product(conn,rows)
+                    self.register_product_class(conn,rows)
+                    self.register_product_image(conn,rows)
+                    self.register_product_stock(conn,rows)
                     rows = []
                 c += 1
                 if ( c == FULLLINES & len(rows) > 0):
                     self.register_product(conn,rows)
+                    self.register_product_class(conn,rows)
+                    self.register_product_image(conn,rows)
+                    self.register_product_stock(conn,rows)
+
         conn.close()
 
     def register_product(self,conn=[],rows=[]):
@@ -53,16 +60,17 @@ update_date
                 # ret = cursor.fetchall()
                 # print(ret)
                 for row in rows:
-                    r = cursor.execute(sql, (row))
+                    r = cursor.execute(sql, (row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8]))
                 conn.commit()
         except conn.InternalError as e:
             utils().log_info('Got error {!r}, errno is {}'.format(e, e.args[0]),[])
-        finally:
-            # print('finally')
-            pass
+            print('Got error')
+        # finally:
+        #     print('finally')
+            # pass
+        # print(sql)
 
     def register_product_class(self,conn=[],rows=[]):
-
         sql = '''
 INSERT INTO dtb_product_class(
 product_id,
@@ -80,4 +88,59 @@ update_date,
 del_flg
 )
 VALUES
+((SELECT product_id FROM dtb_product WHERE name = %s LIMIT 1), (SELECT id FROM mtb_product_type WHERE name = %s), 1, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
 '''
+        try:
+            with conn.cursor() as cursor:
+                for row in rows:
+                    r = cursor.execute(sql, (row[0],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[7],row[8],row[6]))
+                conn.commit()
+        except conn.InternalError as e:
+            utils().log_info('Got error {!r}, errno is {}'.format(e, e.args[0]),[])
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+        # finally:
+        #     print('finally')
+        #     pass
+
+    def register_product_image(self,conn=[],rows=[]):
+        sql = '''
+INSERT INTO dtb_product_image(
+product_id,
+creator_id,
+file_name,
+rank,
+create_date
+)
+VALUES
+((SELECT product_id FROM dtb_product WHERE name = %s LIMIT 1), 1, %s, 0, %s)
+'''
+        try:
+            with conn.cursor() as cursor:
+                for row in rows:
+                    r = cursor.execute(sql, (row[0],row[17],row[7]))
+                conn.commit()
+        except conn.InternalError as e:
+            utils().log_info('Got error {!r}, errno is {}'.format(e, e.args[0]),[])
+        #     print('Got error')
+
+    def register_product_stock(self,conn=[],rows=[]):
+        sql = '''
+INSERT INTO dtb_product_stock(
+product_class_id,
+creator_id,
+stock,
+create_date,
+update_date
+)
+VALUES
+((SELECT product_class_id FROM dtb_product_class WHERE product_code = %s LIMIT 1), 1, %s, %s, %s)
+'''
+        try:
+            with conn.cursor() as cursor:
+                for row in rows:
+                    r = cursor.execute(sql, (row[10],row[18],row[7],row[8]))
+                conn.commit()
+        except conn.InternalError as e:
+            utils().log_info('Got error {!r}, errno is {}'.format(e, e.args[0]),[])
+        #     print('Got error')
