@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         data_dir = settings.BASE_DIR + '/doc/'
-        filter   = 'product.csv'
+        filter   = 'customer.csv'
         if utils().exists_dir(data_dir) == False:
             utils().log_info(data_dir + ' is not directory.',[])
             sys.exit()
@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
         fpath = data_dir + '/' + file
         # read csv
-        product().load_csv(fpath)
+        # product().load_csv(fpath)
 
         # read yml
         # ypath = \
