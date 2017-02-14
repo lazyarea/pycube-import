@@ -4,7 +4,7 @@ import sys
 from django.core.management.base import BaseCommand
 from lib.utils import *
 from django.conf import settings
-# from importtxt.management.commands.lib.customer import *
+from importtxt.management.commands.lib.customer import *
 
 class Command(BaseCommand):
 
@@ -25,10 +25,11 @@ class Command(BaseCommand):
 
         fpath = data_dir + '/' + file
         # read csv
-        # product().load_csv(fpath)
+        customer().load_csv(fpath)
 
         # read yml
         # ypath = \
+        # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.CustomerAddress.dcm.yml'
         # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Customer.dcm.yml'
         # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.ProductClass.dcm.yml'
         # '/home/sites/eccube.example.com/src/Eccube/Resource/doctrine/Eccube.Entity.Product.dcm.yml'
